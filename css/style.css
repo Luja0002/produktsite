@@ -1,0 +1,363 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+body {
+  background-color: #f7f2ea;
+}
+/*Style på h3 produkt side*/
+.product-info .productTitle {
+  font-size: 3rem;
+}
+.product-info .productPrice {
+  font-size: 2rem;
+}
+
+.h1Centered {
+  font-size: 3rem;
+  text-align: center; /* Centrerer teksten i h1 */
+  padding: 4rem 0rem 3rem 0rem;
+}
+
+.productContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 kolonner på mobil */
+  gap: 1.5rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+}
+
+.box {
+  display: grid;
+  grid-template-rows: subgrid; /* Beholder subgrid for at bruge rækkerne fra overordnet container */
+  align-items: start; /* Justerer indholdet i boksen */
+  width: 100%;
+  position: relative;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 0.5rem;
+}
+
+.productDetails {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.feature img {
+  width: 100%;
+  height: auto;
+}
+
+.buyButton {
+  display: block;
+  padding: 0.7rem;
+  border: 2px solid #000;
+  background-color: #000;
+  color: #f7f2ea;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Noto Sans Thai", sans-serif;
+}
+
+.buyButton:hover {
+  background-color: transparent;
+  color: #000;
+}
+
+.subtle {
+  color: grey;
+}
+/*UDSOLGT*/
+
+.soldOutBadge {
+  position: absolute;
+  top: 10px;
+  left: -10px;
+  background: #6d6c6c; /* Rød baggrund */
+  color: white;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  z-index: 3; /* Sørg for, at den er ovenpå billedet */
+  max-width: 80px;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.box.soldOut .productImage {
+  opacity: 0.7; /* Dæmp billedet */
+}
+/* Sale badge */
+.sale-banner {
+  position: absolute;
+  top: 10px;
+  left: -10px;
+  background: red;
+  color: white;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  z-index: 3; /* Sørg for, at den er ovenpå billedet */
+  max-width: 80px;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Strege original pris */
+.originalPrice {
+  text-decoration: line-through;
+  color: grey; /* Gør den oprindelige pris lidt grå for at vise, at den ikke længere er gældende */
+}
+
+/* Discount pris */
+.discountPrice {
+  color: red; /* Gør rabatprisen rød */
+  font-weight: bold; /* Gør rabatprisen fed for at fremhæve den */
+}
+
+/* Sørger for at Sale-badge er ovenpå billedet */
+.box.onSale {
+  position: relative; /* Gør at banneret kan placeres korrekt */
+}
+
+@media (min-width: 800px) {
+  .productContainer {
+    grid-template-columns: repeat(3, 1fr); /* 4 kolonner til desktop */
+  }
+  .product-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 equal-width columns */
+    gap: 3rem;
+    padding: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .productContainer {
+    grid-template-columns: repeat(4, 1fr); /* 4 kolonner til desktop */
+  }
+  .product-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 equal-width columns */
+    gap: 3rem;
+    padding: 2rem;
+  }
+}
+
+/*====== MENU ======*/
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #457dae;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Sørg for, at headeren er ovenpå */
+}
+
+.logo img {
+  width: 339px;
+  height: 57px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu li:last-child {
+  margin-right: 0;
+}
+
+.menu a {
+  display: block;
+  padding: 10px;
+  color: #f7f2ea;
+  text-decoration: none;
+  transition: color 0.3s;
+  text-align: end;
+}
+
+.menu a:hover {
+  color: #f7f2ea;
+}
+
+.burger {
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  position: relative; /* Sørg for, at burger-menuen kan have z-index */
+  z-index: 15; /* Sørg for, at burger-menuen er foran */
+}
+
+.burger .line {
+  width: 100%;
+  height: 2px;
+  background-color: #f7f2ea;
+  margin-bottom: 5px;
+  transition: 0.2s linear;
+}
+
+.burger {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .menu {
+    display: none;
+  }
+  .burger {
+    display: block;
+  }
+  .burger.active .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    transition: 0.2s linear;
+  }
+
+  .burger.active .line:nth-child(2) {
+    opacity: 0;
+    transition: 0.15s linear;
+  }
+
+  .burger.active .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    transition: 0.2s linear;
+  }
+
+  nav.active .menu {
+    display: block;
+    background-color: #457dae;
+    position: absolute;
+    top: 94px;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    z-index: 20; /* Sørg for, at menuen er foran alt andet */
+  }
+
+  nav.active .menu li {
+    margin: 10px 20px;
+  }
+
+  nav.active .menu a {
+    font-size: 24px;
+  }
+}
+
+.box_container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  flex-wrap: wrap; /* Wraps to new line if needed */
+}
+
+.boxes {
+  display: flex;
+  justify-content: center; /* Centers text horizontally */
+  align-items: center; /* Centers text vertically */
+  width: 25rem;
+  height: 10rem;
+  background-color: rgb(130, 176, 203);
+  text-align: center;
+  margin: 10px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.boxes:hover {
+  background-color: rgb(39, 126, 166);
+}
+
+/* Product container with grid */
+.product-container {
+  padding: 5rem 1rem 1rem 1rem;
+}
+/* Image styling */
+.product-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Product info section */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Form and form-group styling */
+.product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Select box styling */
+select {
+  width: 100%;
+  padding: 10px;
+}
+
+/* Button styling */
+.add-to-cart-knap {
+  margin-top: 1rem;
+}
+
+.add-to-cart {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #000;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.add-to-cart:hover {
+  background-color: transparent; /* Keeps the background transparent on hover */
+  border: 2px solid black; /* Adds a black border of 2px */
+  color: black; /* Ensure text is visible */
+}
+
+.greyed-list-title {
+  color: #6d6c6c;
+}
+.greyed-list {
+  color: #6d6c6c;
+  padding-inline: 2rem;
+}
