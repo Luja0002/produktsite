@@ -9,7 +9,7 @@ main {
   margin: 0 auto;
 }
 body {
-  background-color: #f7f2ea;
+  background-color: #f5f1e2;
 }
 /*Style på h3 produkt side*/
 .product-info .productTitle {
@@ -85,24 +85,31 @@ body {
 }
 /*UDSOLGT*/
 
-.soldOutBadge {
-  position: absolute;
-  top: 10px;
-  left: -10px;
-  background: #6d6c6c; /* Rød baggrund */
-  color: white;
-  padding: 0.4rem 1rem;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  z-index: 3; /* Sørg for, at den er ovenpå billedet */
-  max-width: 80px;
-  text-align: center;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
 .box.soldOut .productImage {
-  opacity: 0.7; /* Dæmp billedet */
+  opacity: 0.5; /* Dæmp billedet */
 }
+.box {
+  position: relative; /* Ensures ::after is positioned relative to this */
+  padding-bottom: 1.5rem;
+}
+
+.box.soldOut::after {
+  content: "SOLD OUT";
+  position: absolute;
+  top: 40%; /* Move to the vertical center */
+  left: 50%; /* Move to the horizontal center */
+  transform: translate(-50%, -50%); /* Perfect centering */
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+
+  text-align: center;
+  white-space: nowrap;
+}
+
 /* Sale badge */
 .sale-banner {
   position: absolute;
@@ -168,7 +175,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #457dae;
+  background-color: #4f649b;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   z-index: 10; /* Sørg for, at headeren er ovenpå */
 }
@@ -181,96 +188,6 @@ header {
 nav {
   display: flex;
   align-items: center;
-}
-
-.menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.menu li {
-  margin-right: 20px;
-}
-
-.menu li:last-child {
-  margin-right: 0;
-}
-
-.menu a {
-  display: block;
-  padding: 10px;
-  color: #f7f2ea;
-  text-decoration: none;
-  transition: color 0.3s;
-  text-align: end;
-}
-
-.menu a:hover {
-  color: #f7f2ea;
-}
-
-.burger {
-  width: 30px;
-  height: 20px;
-  cursor: pointer;
-  position: relative; /* Sørg for, at burger-menuen kan have z-index */
-  z-index: 15; /* Sørg for, at burger-menuen er foran */
-}
-
-.burger .line {
-  width: 100%;
-  height: 2px;
-  background-color: #f7f2ea;
-  margin-bottom: 5px;
-  transition: 0.2s linear;
-}
-
-.burger {
-  display: none;
-}
-
-@media screen and (max-width: 800px) {
-  .menu {
-    display: none;
-  }
-  .burger {
-    display: block;
-  }
-  .burger.active .line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-    transition: 0.2s linear;
-  }
-
-  .burger.active .line:nth-child(2) {
-    opacity: 0;
-    transition: 0.15s linear;
-  }
-
-  .burger.active .line:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-    transition: 0.2s linear;
-  }
-
-  nav.active .menu {
-    display: block;
-    background-color: #457dae;
-    position: absolute;
-    top: 94px;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    z-index: 20; /* Sørg for, at menuen er foran alt andet */
-  }
-
-  nav.active .menu li {
-    margin: 10px 20px;
-  }
-
-  nav.active .menu a {
-    font-size: 24px;
-  }
 }
 
 .box_container {
@@ -286,22 +203,22 @@ nav {
   align-items: center; /* Centers text vertically */
   width: 25rem;
   height: 10rem;
-  background-color: rgb(130, 176, 203);
+  background-color: #4f649b;
   text-align: center;
-  margin: 10px;
+  margin: 1rem;
   font-size: 1.5rem;
   text-decoration: none;
-  color: black;
+  color: #f5f1e2;
   font-weight: bold;
 }
 
 .boxes:hover {
-  background-color: rgb(39, 126, 166);
+  background-color: rgb(0, 26, 98);
 }
 
 /* Product container with grid */
 .product-container {
-  padding: 5rem 1rem 1rem 1rem;
+  padding: 3rem 1rem 3rem 1rem;
 }
 /* Image styling */
 .product-image img {
@@ -322,19 +239,10 @@ nav {
   flex-direction: column;
 }
 
-.form-group {
-  margin-bottom: 1rem;
-}
-
 /* Select box styling */
 select {
   width: 100%;
   padding: 10px;
-}
-
-/* Button styling */
-.add-to-cart-knap {
-  margin-top: 1rem;
 }
 
 .add-to-cart {
@@ -356,8 +264,71 @@ select {
 
 .greyed-list-title {
   color: #6d6c6c;
+  font-size: 1.5rem;
 }
 .greyed-list {
   color: #6d6c6c;
   padding-inline: 2rem;
+  font-size: 1.2rem;
+}
+.isOnSale {
+  visibility: visible;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Horizontally centers content */
+  align-items: center; /* Vertically centers content */
+  position: relative;
+  padding-bottom: 10rem;
+  padding-top: 2rem;
+}
+
+.centered-image {
+  width: 100%;
+  height: auto; /* Make sure the image scales responsively */
+}
+
+.categoryImg {
+  position: absolute;
+  top: 65%; /* Adjust the value to overlap the text with the image */
+  color: #4f649b; /* Adjust text color for contrast */
+  font-size: 14vw; /* Responsive font size based on viewport width */
+  text-align: center;
+}
+.add-to-cart-hidden {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #000;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid #000;
+}
+
+.add-to-cart-hidden:hover {
+  background-color: transparent;
+  border: 2px solid #000;
+  color: #000;
+}
+
+.add-to-cart-hidden {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.list-page.discount-badge {
+  float: right;
+}
+
+.product-page.discount-badge {
+  font-size: 2rem;
 }
